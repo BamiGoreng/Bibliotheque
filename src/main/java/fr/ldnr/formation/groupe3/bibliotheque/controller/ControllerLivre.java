@@ -1,10 +1,11 @@
-package fr.ldnr.formation.groupe3.bibliotheque;
+package fr.ldnr.formation.groupe3.bibliotheque.controller;
 
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,10 +21,15 @@ public class ControllerLivre {
 
 	private ServiceLivre serviceLivre;
 
+	@GetMapping("/livre")
+	public String afficher() {
+		return "livre-creer";
+	}
+
 	@PostMapping("/livre")
 	// Recuperation des données saisies dans le formulaire de creation de livre
 	public String recevoir(Model model, @RequestParam("titre") String titre,
-			@RequestParam("anneeEdition") LocalDate anneeEdition, @RequestParam("editeur") String editeur,
+			@RequestParam("anneeEdition") String anneeEditionString, @RequestParam("editeur") String editeur,
 			@RequestParam("prenomAuteur") String prenomAuteur, @RequestParam("nomAuteur") String nomAuteur) {
 		// TODO : conditions de validation du formulaire
 		// if (titre.length() < 5 || anneeEdition ) {
@@ -33,6 +39,7 @@ public class ControllerLivre {
 		// return "livre-creer";
 		// }else {
 		// Enregistrement en BDD
+		LocalDate anneeEdition = LocalDate.parse(anneeEditionString);
 		serviceLivre.enregistrer(titre, anneeEdition, editeur, prenomAuteur, nomAuteur);
 		return "livre-ok";
 		// }

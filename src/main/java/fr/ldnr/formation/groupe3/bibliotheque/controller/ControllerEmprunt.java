@@ -1,5 +1,5 @@
 
-package fr.ldnr.formation.groupe3.bibliotheque;
+package fr.ldnr.formation.groupe3.bibliotheque.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import fr.ldnr.formation.groupe3.bibliotheque.model.Livre;
 
 /**
  * @author Groupe 3

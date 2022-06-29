@@ -1,5 +1,5 @@
 
-package fr.ldnr.formation.groupe3.bibliotheque;
+package fr.ldnr.formation.groupe3.bibliotheque.model;
 
 import java.time.LocalDate;
 
@@ -19,11 +19,9 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name= "livres")
+@Table(name = "livres")
 public class Livre {
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idEmprunt", referencedColumnName = "idEmprunt")
+
 	private int idLivre;
 	private String titre;
 	private LocalDate anneeEdition;

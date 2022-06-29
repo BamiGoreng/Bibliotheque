@@ -1,7 +1,6 @@
 
 package fr.ldnr.formation.groupe3.bibliotheque;
 
-import java.time.LocalDate;
 import java.util.Properties;
 
 import org.hibernate.SessionFactory;
@@ -15,6 +14,9 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import fr.ldnr.formation.groupe3.bibliotheque.model.Emprunt;
+import fr.ldnr.formation.groupe3.bibliotheque.model.Livre;
+
 /**
  * Classe main de l'application bibliothèque
  * 
@@ -27,9 +29,10 @@ public class Application {
 	private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
 	public static void main(String[] args) {
-		LocalDate ld = LocalDate.now();
-		Livre livre = new Livre("Mr Mercedes", ld, "Hachette", "Jo", "Nesbod");
-		System.out.println(livre);
+		/*
+		 * LocalDate ld = LocalDate.now(); Livre livre = new Livre("Mr Mercedes", ld,
+		 * "Hachette", "Jo", "Nesbod"); System.out.println(livre);
+		 */
 
 		SpringApplication.run(Application.class, args);
 		logger.info("Application Bibliothèque démarrée");
@@ -50,8 +53,7 @@ public class Application {
 		options.put("hibernate.dialect", "org.sqlite.hibernate.dialect.SQLiteDialect");
 		options.put("hibernate.connection.driver_class", "org.sqlite.JDBC");
 		options.put("hibernate.connection.url", "jdbc:sqlite:bibliotheque.sqlite");
-		options.put("hibernate.hbm2ddl.auto", "create"); // TODO : changer la methode pour générer une table au
-															// lancement
+		options.put("hibernate.hbm2ddl.auto", "create"); // TODO : changer la methode pour générer une table au lancement
 		options.put("hibernate.show_sql", "true");
 		SessionFactory sf = new Configuration().addProperties(options).addAnnotatedClass(Livre.class).addAnnotatedClass(Emprunt.class).buildSessionFactory();
 		return sf;

@@ -1,16 +1,15 @@
 
-package fr.ldnr.formation.groupe3.bibliotheque;
+package fr.ldnr.formation.groupe3.bibliotheque.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,15 +19,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "emprunts")
 public class Emprunt {
+
 	private int idEmprunt;
-	
-	@OneToOne(mappedBy = "emprunts")
 	private Livre livre;
 	private String emprunteur;
 	private LocalDate dateEmprunt;
 	private LocalDate dateRestitution;
 	private boolean perdu = false;
-	
+
 	public Emprunt() {
 		this(null, null);
 	}
@@ -57,9 +55,8 @@ public class Emprunt {
 		this.idEmprunt = idEmprunt;
 	}
 
-	//@Column(nullable = false)
-	//@OneToOne(mappedBy = "Livre.class" , optional = false, fetch = FetchType.LAZY) // fonctionne mais erreurs
-	
+	// un livre concerne 1 ou plusieurs emprunts
+	@ManyToOne(optional = false, fetch = FetchType.LAZY) // fonctionne mais erreurs
 	public Livre getLivre() {
 		return livre;
 	}

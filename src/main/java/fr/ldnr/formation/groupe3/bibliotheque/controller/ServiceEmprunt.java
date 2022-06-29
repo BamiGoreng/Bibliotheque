@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.ldnr.formation.groupe3.bibliotheque;
+package fr.ldnr.formation.groupe3.bibliotheque.controller;
 
 import java.util.List;
 
@@ -10,6 +10,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import fr.ldnr.formation.groupe3.bibliotheque.model.Emprunt;
+import fr.ldnr.formation.groupe3.bibliotheque.model.Livre;
 
 /**
  * @author cedo
