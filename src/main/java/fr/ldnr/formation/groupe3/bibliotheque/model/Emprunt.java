@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * @author cedo
+ * @author Groupe 3
  *
  */
 @Entity
@@ -23,9 +23,9 @@ public class Emprunt {
 	private int idEmprunt;
 	private Livre livre;
 	private String emprunteur;
-	private LocalDate dateEmprunt;
-	private LocalDate dateRestitution;
-	private boolean perdu = false;
+	private String dateEmprunt;
+	private String dateRestitution;
+	// private boolean perdu = false;
 
 	public Emprunt() {
 		this(null, null);
@@ -35,14 +35,13 @@ public class Emprunt {
 		this.idEmprunt = 0;
 		this.livre = livre;
 		this.emprunteur = emprunteur;
-		this.dateEmprunt = LocalDate.now();
-		this.dateRestitution = dateEmprunt.plusDays(15);
+		this.dateEmprunt = LocalDate.now().toString();
+		this.dateRestitution = null;
 	}
 
 	@Override
 	public String toString() {
-		return "Emprunt [livre=" + livre + ", emprunteur=" + emprunteur + ", dateEmprunt=" + dateEmprunt
-				+ ", dateRestitution=" + dateRestitution + ", perdu=" + perdu + "]";
+		return "Emprunt [livre=" + livre + ", emprunteur=" + emprunteur + ", dateEmprunt=" + dateEmprunt + "]";
 	}
 
 	@Id
@@ -56,7 +55,7 @@ public class Emprunt {
 	}
 
 	// un livre concerne 1 ou plusieurs emprunts
-	@ManyToOne(optional = false, fetch = FetchType.LAZY) // fonctionne mais erreurs
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	public Livre getLivre() {
 		return livre;
 	}
@@ -75,29 +74,28 @@ public class Emprunt {
 	}
 
 	@Column(nullable = false)
-	public LocalDate getDateEmprunt() {
+	public String getDateEmprunt() {
 		return dateEmprunt;
 	}
 
-	public void setDateEmprunt(LocalDate dateEmprunt) {
+	public void setDateEmprunt(String dateEmprunt) {
 		this.dateEmprunt = dateEmprunt;
 	}
 
-	@Column(nullable = false)
-	public LocalDate getDateRestitution() {
+	@Column(nullable = true)
+	public String getDateRestitution() {
 		return dateRestitution;
 	}
 
-	public void setDateRestitution(LocalDate dateRestitution) {
+	public void setDateRestitution(String dateRestitution) {
 		this.dateRestitution = dateRestitution;
 	}
 
-	@Column(nullable = false)
-	public boolean isPerdu() {
-		return perdu;
-	}
+	/*
+	 * @Column(nullable = false) public boolean isPerdu() { return perdu; }
+	 */
 
-	public void setPerdu(boolean perdu) {
-		this.perdu = perdu;
-	}
+	/*
+	 * public void setPerdu(boolean perdu) { this.perdu = perdu; }
+	 */
 }

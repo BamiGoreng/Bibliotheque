@@ -7,23 +7,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Voyages :: Japon</title>
+<title>Gestion de bibliothèque</title>
 </head>
 <body>
 	<h1>Bibliothèque</h1>
-	<h2>Ajouter un livre :</h2>
-	<ul>
-		<!-- 	iteration avec le taglib -->
-		<c:forEach items="${livres}" var="d">
-			<li>${d.titre}
-			: ${d.anneeEdition}
-			: ${d.editeur}
-			: ${d.prenomAuteur}
-			: ${d.nomAuteur}</li>
+	<h2>Liste des livres</h2>
+	<table>
+		<tr>
+			<td>ID du livre</td>
+			<td>Titre</td>
+			<td>Année d'édition</td>
+			<td>Editeur</td>
+			<td>Prénom de l'auteur</td>
+			<td>Nom de l'auteur</td>
+		</tr>
+		<c:forEach items="${livres}" var="l">
+			<tr>
+				<td>${l.idLivre}</td>
+				<td>${l.titre}</td>
+				<td>${l.anneeEdition}</td>
+				<td>${l.editeur}</td>
+				<td>${l.prenomAuteur}</td>
+				<td>${l.nomAuteur}</td>
+			</tr>
 		</c:forEach>
-	</ul>
-	<p>
-		<a href="/inde">Retour à la page d'accueil</a>
-	</p>
+	</table>
+	<div>
+		<a href="/bibliotheque">Retour au menu principal</a> 
+		<a href="/livre">Ajouter un livre</a>
+		<a href="/emprunt">Gestion des emprunts</a>
+	</div>
 </body>
 </html>

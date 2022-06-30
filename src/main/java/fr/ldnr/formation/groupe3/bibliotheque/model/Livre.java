@@ -1,35 +1,30 @@
 
 package fr.ldnr.formation.groupe3.bibliotheque.model;
 
-import java.time.LocalDate;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- * @author cedo
+ * @author Groupe 3
  *
  */
 
 @Entity
-@Table(name = "livres")
+@Table(name = "livres") // nom de la table en BDD
 public class Livre {
 
 	private int idLivre;
 	private String titre;
-	private LocalDate anneeEdition;
+	private String anneeEdition;
 	private String editeur;
 	private String prenomAuteur;
 	private String nomAuteur;
 
-	public Livre(String titre, LocalDate anneeEdition, String editeur, String prenom, String nom) {
+	public Livre(String titre, String anneeEdition, String editeur, String prenom, String nom) {
 		this.idLivre = 0;
 		this.titre = titre;
 		this.anneeEdition = anneeEdition;
@@ -50,11 +45,11 @@ public class Livre {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getId() {
+	public int getIdLivre() {
 		return idLivre;
 	}
 
-	public void setId(int idLivre) {
+	public void setIdLivre(int idLivre) {
 		this.idLivre = idLivre;
 	}
 
@@ -68,13 +63,14 @@ public class Livre {
 	}
 
 	@Column(nullable = false)
-	public LocalDate getLocaledate() {
+	public String getAnneeEdition() {
 		return anneeEdition;
 	}
 
-	public void setLocaledate(LocalDate anneeEdition) {
+	public void setAnneeEdition(String anneeEdition) {
 		this.anneeEdition = anneeEdition;
 	}
+	
 
 	@Column(nullable = false, length = 50)
 	public String getEditeur() {

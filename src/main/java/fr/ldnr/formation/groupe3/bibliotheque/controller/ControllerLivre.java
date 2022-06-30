@@ -1,7 +1,5 @@
 package fr.ldnr.formation.groupe3.bibliotheque.controller;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * Classe Controller de livres
  * 
+ * Intéraction entre des données saisies par un user (JSP) et notre application JAVA + notre BDD et mise à jour des JSP
+ * 
+ * Sequence d'une entree de donnee par un user : JSP => JAVA => BDD
+ * 
+ * Sequence de requete de donnee par un user : BDD => JAVA => JSP
+ * 
+ * Imbrication des heritages : hibernate => service => controller
  * @author Groupe 3
  *
  */
@@ -20,29 +25,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ControllerLivre {
 
 	private ServiceLivre serviceLivre;
-
-	@GetMapping("/livre")
+/**
+ * 
+ * @return
+ */
+	@GetMapping("/livre") // URL a taper après http://localhost:8080
 	public String afficher() {
-		return "livre-creer";
+		return "livre-creer"; // retourne un JSP
 	}
-
+	
 	@PostMapping("/livre")
 	// Recuperation des données saisies dans le formulaire de creation de livre
 	public String recevoir(Model model, @RequestParam("titre") String titre,
 			@RequestParam("anneeEdition") String anneeEditionString, @RequestParam("editeur") String editeur,
 			@RequestParam("prenomAuteur") String prenomAuteur, @RequestParam("nomAuteur") String nomAuteur) {
-		// TODO : conditions de validation du formulaire
-		// if (titre.length() < 5 || anneeEdition ) {
-		// Message d'erreur en cas de mauvaise saisie
-		// TODO : mettre REQUIRED dans les inputs JSP pour + de sécurité
-		// model.addAttribute("message", "Erreurs dans le formulaire");
-		// return "livre-creer";
-		// }else {
-		// Enregistrement en BDD
-		LocalDate anneeEdition = LocalDate.parse(anneeEditionString);
-		serviceLivre.enregistrer(titre, anneeEdition, editeur, prenomAuteur, nomAuteur);
-		return "livre-ok";
-		// }
+		// conditions de validation du formulaire
+		if (titre.length() < 1 || editeur.length() < 1 || prenomAuteur.length() < 1 || nomAuteur.length() < 1) {
+			// Message d'erreur en cas de mauvaise saisie
+			model.addAttribute("erreur", "Erreurs dans le formulaire");
+			return "livre-creer";
+		} else {
+			// Enregistrement en BDD
+			serviceLivre.enregistrer(titre, anneeEditionString, editeur, prenomAuteur, nomAuteur);
+			model.addAttribute("validation", "Livre enregistré avec succès");
+			return "livre-ok";
+		}
 	}
 
 	// Mapping au JSP "livre-liste" avec attribut "livres"
