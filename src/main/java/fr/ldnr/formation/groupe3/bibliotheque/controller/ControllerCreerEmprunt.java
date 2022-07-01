@@ -6,8 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -15,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  */
 @Controller
-public class ControllerEmprunt {
+public class ControllerCreerEmprunt {
 
 	private ServiceEmprunt serviceEmprunt;
 
@@ -37,25 +35,8 @@ public class ControllerEmprunt {
 			serviceEmprunt.enregistrer(livreId, emprunteur);
 			model.addAttribute("emprunts", serviceEmprunt.lireEmprunt());
 			model.addAttribute("ajout", "Emprunt enregistré avec succès");
-			return "emprunt-ok";
+			return "emprunt-creer-ok";
 		}
-	}
-
-	// Mapping au JSP "emprunt-modifier"
-	@GetMapping("/emprunt/modifier")
-	public String afficherModif(Model model) {
-		model.addAttribute("emprunts", serviceEmprunt.lireEmprunt());
-		return "emprunt-modifier";
-	}
-
-	@PostMapping("/emprunt/modifier")
-	public String modifier(Model model, @RequestParam("empruntId") int empruntId,
-			@RequestParam("dateRestitution") String dateRestitution) {
-		// Enregistrement en BDD
-		serviceEmprunt.modifierEmprunt(empruntId, dateRestitution);
-		model.addAttribute("emprunts", serviceEmprunt.lireEmprunt());
-		model.addAttribute("modif", "Emprunt rendu avec succès");
-		return "emprunt-modifier";
 	}
 
 	// Injection de la classe de Service

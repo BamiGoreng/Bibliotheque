@@ -18,6 +18,7 @@
 				required>
 			</label>
 		</div>
+		<a href="/livre/liste">Liste des livres</a>
 		<div>
 			<label>Nom de l'emprunteur : <input type="text"
 				name="emprunteur" required>
