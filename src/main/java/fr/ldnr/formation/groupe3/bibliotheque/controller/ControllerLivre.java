@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 
  * Sequence de requete de donnee par un user : BDD => JAVA => JSP
  * 
- * Imbrication des heritages : hibernate => service => controller
+ * Imbrication des heritages/autowired : hibernate(sessionFactory) => service => controller
  * @author Groupe 3
  *
  */

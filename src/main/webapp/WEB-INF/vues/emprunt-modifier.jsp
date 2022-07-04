@@ -6,28 +6,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style><%@include file="/css/style.css"%></style>
 <title>Gestion de bibliothèque</title>
 
 </head>
 <body>
+<section class="principal">
+<div>
 	<h1>Bibliothèque</h1>
 
 	<h2>Modifier un emprunt</h2>
-	<form method="POST">
-		<div>
-			<label>Id de l'emprunt : <input type="number"
-				name="empruntId" required>
-			</label>
-		</div>
-		<div>
-			<label>Date de restitution : <input type="date"
-				name="dateRestitution" required>
-			</label>
-		</div>
-		<input type="submit" value="Modifier">
+	</div>
+	<div>
+	<form class="flex-container" method="POST">
+		
+			<label>Id de l'emprunt : </label>
+			<input type="number" name="empruntId" required>
+			<label>Date de restitution : </label>
+			<input type="date" name="dateRestitution" required>
+			<input type="submit" value="Modifier">
 	</form>
 	<p>${modif}</p>
 	<p>${erreur}</p>
+	</div>
+	<div>
 	<h2>Liste des emprunts</h2>
 	<table>
 		<tr>
@@ -47,10 +49,12 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<ul>
-		<li><a href="/bibliotheque">Retour au menu principal</a></li>
-		<li><a href="/emprunt">Ajouter un emprunt</a></li>
-		<li><a href="/livre">Ajouter un livre</a></li>
-	</ul>
+	</div>
+	</section>
+	<div class="liens">
+		<a href="/bibliotheque">Retour au menu principal</a>
+		<a href="/emprunt">Ajouter un emprunt</a>
+		<a href="/livre">Ajouter un livre</a>
+	</div>
 </body>
 </html>

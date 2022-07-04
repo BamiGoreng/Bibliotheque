@@ -7,11 +7,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style><%@include file="/css/style.css"%></style>
 <title>Gestion de bibliothèque</title>
 </head>
 <body>
+
+
 	<h1>Bibliothèque</h1>
 	<h2>Liste des livres</h2>
+	
 	<table>
 		<tr>
 			<td>ID du livre</td>
@@ -32,7 +36,8 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<div>
+	
+	<div class = "liens">
 		<a href="/bibliotheque">Retour au menu principal</a> 
 		<a href="/livre">Ajouter un livre</a>
 		<a href="/emprunt">Gestion des emprunts</a>

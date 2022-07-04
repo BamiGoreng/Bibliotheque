@@ -31,7 +31,9 @@ public class ControllerModifierEmprunt {
 		// empecher la modif d'un emprunt qui n'existe pas
 		empruntId > serviceEmprunt.lireEmprunt().size() || empruntId < 1
 		// empecher modif si le livre est déjà rendu
-				|| !(serviceEmprunt.lireEmprunt().get(empruntId).getDateRestitution() == null)) {
+				//|| !(serviceEmprunt.lireEmprunt().get(empruntId).getDateRestitution() == null)
+		) 
+		{
 			model.addAttribute("erreur", "Le numéro d'emprunt n'existe pas ou le livre est déjà emprunté");
 			model.addAttribute("emprunts", serviceEmprunt.lireEmprunt());
 			return "emprunt-modifier";
